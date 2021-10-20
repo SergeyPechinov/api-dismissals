@@ -2,15 +2,12 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const docx = require('docx');
-const cors = require('cors');
 const bodyParser = require('body-parser')
 
-
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-const { AlignmentType, Document, HeadingLevel, Packer, Paragraph, TextRun, UnderlineType } = docx;
+const { AlignmentType, Document, Packer, Paragraph, TextRun } = docx;
 
 const headerText = (text, textParams) => new Paragraph({
   alignment: AlignmentType.RIGHT,
@@ -48,11 +45,6 @@ app.post('/', async ({ body }, response) => {
         headerText(`${name},`),
         headerText(`${position},`),
         headerText(department),
-        // headerText('(ФИО, должность и подразделение)', {
-        //   size: 16,
-        //   italics: true,
-        //   bold: false,
-        // }),
         new Paragraph({}),
         new Paragraph({}),
         new Paragraph({}),
