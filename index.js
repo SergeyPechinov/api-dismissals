@@ -3,7 +3,9 @@ const app = express();
 const PORT = 3000;
 const docx = require('docx');
 const bodyParser = require('body-parser')
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
@@ -21,6 +23,7 @@ const headerText = (text, textParams) => new Paragraph({
     }),
   ]
 });
+const emptyLine = new Paragraph({});
 
 app.post('/', async ({ body }, response) => {
   const {
@@ -45,17 +48,17 @@ app.post('/', async ({ body }, response) => {
         headerText(`${name},`),
         headerText(`${position},`),
         headerText(department),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
+        emptyLine,
         new Paragraph({
           alignment: AlignmentType.CENTER,
           children: [
@@ -67,7 +70,7 @@ app.post('/', async ({ body }, response) => {
             })
           ]
         }),
-        new Paragraph({}),
+        emptyLine,
         new Paragraph({
           alignment: AlignmentType.CENTER,
           children: [
@@ -78,9 +81,9 @@ app.post('/', async ({ body }, response) => {
             })
           ]
         }),
-        new Paragraph({}),
-        new Paragraph({}),
-        new Paragraph({}),
+        emptyLine,
+        emptyLine,
+        emptyLine,
         new Paragraph({
           alignment: AlignmentType.LEFT,
           children: [
@@ -92,7 +95,7 @@ app.post('/', async ({ body }, response) => {
             })
           ]
         }),
-        new Paragraph({}),
+        emptyLine,
         new Paragraph({
           alignment: AlignmentType.LEFT,
           children: [
